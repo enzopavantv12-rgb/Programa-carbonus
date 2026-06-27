@@ -1,0 +1,20 @@
+/* Minimal specific adjustments for HoverFooter */
+
+footer {
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+footer:hover {
+  border-color: rgba(6, 202, 237, 0.2);
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

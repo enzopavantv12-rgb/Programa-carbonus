@@ -1,0 +1,87 @@
+.purpose-section {
+  background: var(--bg-dark);
+  padding: clamp(64px, 8vw, 112px) clamp(20px, 5vw, 80px);
+  color: var(--text-on-dark);
+}
+
+.purpose-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.purpose-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.purpose-eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(241, 242, 234, 0.4);
+}
+
+.purpose-manifesto-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-on-dark);
+}
+
+/* Custom properties for the Shadcn Card overrides inside Purpose */
+.purpose-section .rounded-lg {
+  background: rgba(18, 26, 53, 0.45) !important;
+  border: 1px solid rgba(241, 242, 234, 0.08) !important;
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.purpose-section .rounded-lg:hover {
+  transform: translateY(-5px);
+  border-color: rgba(6, 202, 237, 0.3) !important;
+  box-shadow: 0 12px 30px rgba(6, 202, 237, 0.08);
+}
+
+.purpose-section .text-white {
+  color: var(--text-on-dark) !important;
+}
+
+.purpose-section .text-gray-500 {
+  color: rgba(241, 242, 234, 0.55) !important;
+  line-height: 1.6;
+}
+
+/* responsive grid gap settings */
+@media (max-width: 1024px) {
+  .purpose-section .grid-cols-6 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .purpose-section .lg\:col-span-2,
+  .purpose-section .lg\:col-span-3 {
+    grid-column: span 2 / span 2 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .purpose-section .grid-cols-6 {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .purpose-section .col-span-full,
+  .purpose-section .sm\:col-span-3,
+  .purpose-section .lg\:col-span-2,
+  .purpose-section .lg\:col-span-3 {
+    grid-column: span 1 / span 1 !important;
+  }
+}

@@ -1,0 +1,31 @@
+/* Carbonus Design Tokens */
+:root {
+  /* Design System 2.0 Color Palette */
+  --primary:        #0655ed;  /* azul — ações, links, foco */
+  --secondary:      #06caed;  /* azul claro — detalhes, hovers suaves */
+  --accent:         #1bf717;  /* verde — CTAs e destaques energéticos */
+  --text:           #121a35;  /* azul-escuro — texto principal */
+  --text-on-dark:   #f1f2ea;  /* off-white — texto sobre fundos escuros */
+  --warm:           #d29905;  /* dourado — alertas/acento quente */
+  --bg:             #f1f2ea;  /* off-white — fundo claro */
+  --bg-dark:        #121a35;  /* azul-escuro — seções/fundo escuro */
+
+  /* Mapeamento de variáveis anteriores para compatibilidade retroativa */
+  --blue:        var(--primary);
+  --cyan:        var(--secondary);
+  --neon:        var(--accent);
+  --navy:        var(--bg-dark);
+  --gold:        var(--warm);
+  --cream:       var(--bg);
+
+  --grad-neon:   linear-gradient(100deg, var(--accent), var(--secondary), var(--primary));
+  --grad-dark:   linear-gradient(160deg, #0c2b34 0%, var(--bg-dark) 60%, #1a2444 100%);
+
+  /* Tipografia Nunito */
+  --font-display: 'Nunito', 'Avenir Next Rounded', 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+  --font-body:    'Nunito', 'Avenir Next Rounded', 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+
+  --radius-card:  20px;
+  --radius-pill:  999px;
+  --radius-frame: 28px;
+}
