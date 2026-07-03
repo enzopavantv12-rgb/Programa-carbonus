@@ -3,7 +3,7 @@ import './Hero.css';
 
 export default function Hero() {
   const forestVideo = '/download.mp4';
-  const backgroundTunnel = '/hero-fundo-carbonus.png';
+  const backgroundTunnel = '/hero-fundo-carbonus.jpg';
 
   return (
     <section className="hero-scroll-container">
