@@ -112,7 +112,7 @@ export default function HowItWorks() {
           </div>
 
           {/* BLOCO 4: Gráfico de Atividade Recharts */}
-          <div className="relative col-span-full border-white/10 min-h-[360px] flex flex-col justify-between">
+          <div className="relative col-span-full border-white/10 min-h-[360px] flex flex-col justify-between w-full overflow-hidden">
             <div className="absolute z-10 max-w-lg px-6 pr-12 pt-6 md:px-12 md:pt-8 pointer-events-none">
               <span className="text-muted-foreground flex items-center gap-2 text-sm text-gray-400">
                 <Activity className="size-4 text-accent" />

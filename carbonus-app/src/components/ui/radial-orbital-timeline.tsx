@@ -39,6 +39,27 @@ export default function RadialOrbitalTimeline({
   const orbitRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  let radius = 160;
+  if (windowWidth < 400) {
+    radius = 90;
+  } else if (windowWidth < 480) {
+    radius = 100;
+  } else if (windowWidth < 640) {
+    radius = 115;
+  } else if (windowWidth < 1024) {
+    radius = 140;
+  }
+
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === containerRef.current || e.target === orbitRef.current) {
       setExpandedItems({});
@@ -112,9 +133,6 @@ export default function RadialOrbitalTimeline({
 
   const calculateNodePosition = (index: number, total: number) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
-    
-    // Adjust radius responsively
-    const radius = typeof window !== 'undefined' && window.innerWidth < 640 ? 110 : 160;
     const radian = (angle * Math.PI) / 180;
 
     const x = radius * Math.cos(radian) + centerOffset.x;
@@ -179,7 +197,13 @@ export default function RadialOrbitalTimeline({
           </div>
 
           {/* Dotted Orbit Path */}
-          <div className="absolute w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] rounded-full border border-white/5 border-dashed pointer-events-none"></div>
+          <div 
+            className="absolute rounded-full border border-white/5 border-dashed pointer-events-none"
+            style={{
+              width: `${radius * 2}px`,
+              height: `${radius * 2}px`,
+            }}
+          />
 
           {timelineData.map((item, index) => {
             const position = calculateNodePosition(index, timelineData.length);
