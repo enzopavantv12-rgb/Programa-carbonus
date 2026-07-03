@@ -1,10 +1,14 @@
 import { Mail, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import { FooterBackgroundGradient, TextHoverEffect } from "./ui/hover-footer";
 import "./Footer.css";
 
+type FooterLink = { label: string; href?: string; to?: string; pulse?: boolean }
+type FooterSection = { title: string; links: FooterLink[] }
+
 export default function Footer() {
   // Footer link data
-  const footerLinks = [
+  const footerLinks: FooterSection[] = [
     {
       title: "O Programa",
       links: [
@@ -17,14 +21,10 @@ export default function Footer() {
     {
       title: "Suporte e Regulação",
       links: [
-        { label: "Termos de Uso", href: "#" },
-        { label: "Políticas de Privacidade", href: "#" },
-        { label: "Segurança de Dados LGPD", href: "#" },
-        {
-          label: "Canal P2P Chat",
-          href: "#",
-          pulse: true,
-        },
+        { label: "Termos de Uso", to: "/termos-de-uso" },
+        { label: "Políticas de Privacidade", to: "/politica-de-privacidade" },
+        { label: "Segurança de Dados LGPD", to: "/politica-de-seguranca" },
+        { label: "Canal P2P Chat", href: "#", pulse: true },
       ],
     },
   ];
@@ -113,12 +113,21 @@ export default function Footer() {
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label} className="relative w-fit">
-                    <a
-                      href={link.href}
-                      className="text-gray-400 hover:text-secondary text-sm transition-colors"
-                    >
-                      {link.label}
-                    </a>
+                    {link.to ? (
+                      <Link
+                        to={link.to}
+                        className="text-gray-400 hover:text-secondary text-sm transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-gray-400 hover:text-secondary text-sm transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                     {link.pulse && (
                       <span className="absolute top-1.5 -right-3.5 w-2 h-2 rounded-full bg-accent animate-pulse"></span>
                     )}

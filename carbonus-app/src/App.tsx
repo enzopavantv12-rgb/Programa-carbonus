@@ -1,44 +1,59 @@
-import { useState, lazy, Suspense } from 'react'
-import Hero from './components/Hero'
-import Purpose from './components/Purpose'
-import SignupForm from './components/SignupForm'
-import SuccessScreen from './components/SuccessScreen'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import LandingPage from './LandingPage'
 
-// Lazy: seções abaixo do fold com dependências pesadas
-const HowItWorks = lazy(() => import('./components/HowItWorks'))
-const Benefits   = lazy(() => import('./components/Benefits'))
-const Footer     = lazy(() => import('./components/Footer'))
+// Legal pages are lazy-loaded: visitors to the landing don't download doc content
+const LazyTermos = lazy(async () => {
+  const [{ default: LegalPage }, { termosDeUso }] = await Promise.all([
+    import('./pages/LegalPage'),
+    import('./data/legal'),
+  ])
+  return { default: () => <LegalPage doc={termosDeUso} /> }
+})
 
-// Placeholder visualmente consistente enquanto a seção carrega
-function SectionSkeleton({ height = 480 }: { height?: number }) {
+const LazyPrivacidade = lazy(async () => {
+  const [{ default: LegalPage }, { politicaPrivacidade }] = await Promise.all([
+    import('./pages/LegalPage'),
+    import('./data/legal'),
+  ])
+  return { default: () => <LegalPage doc={politicaPrivacidade} /> }
+})
+
+const LazySeguranca = lazy(async () => {
+  const [{ default: LegalPage }, { politicaSeguranca }] = await Promise.all([
+    import('./pages/LegalPage'),
+    import('./data/legal'),
+  ])
+  return { default: () => <LegalPage doc={politicaSeguranca} /> }
+})
+
+function PageLoader() {
   return (
     <div
-      style={{ height, background: 'var(--bg-dark)', width: '100%' }}
-      aria-hidden="true"
+      style={{ minHeight: '100vh', background: 'var(--bg-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      aria-label="Carregando..."
     />
   )
 }
 
 export default function App() {
-  const [globalId, setGlobalId] = useState<string | null>(null)
-
   return (
-    <>
-      <Hero />
-      <Purpose />
-      <Suspense fallback={<SectionSkeleton height={640} />}>
-        <HowItWorks />
-      </Suspense>
-      <Suspense fallback={<SectionSkeleton height={800} />}>
-        <Benefits />
-      </Suspense>
-      {globalId
-        ? <SuccessScreen globalId={globalId} />
-        : <SignupForm onSuccess={setGlobalId} />
-      }
-      <Suspense fallback={<SectionSkeleton height={300} />}>
-        <Footer />
-      </Suspense>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/termos-de-uso"
+          element={<Suspense fallback={<PageLoader />}><LazyTermos /></Suspense>}
+        />
+        <Route
+          path="/politica-de-privacidade"
+          element={<Suspense fallback={<PageLoader />}><LazyPrivacidade /></Suspense>}
+        />
+        <Route
+          path="/politica-de-seguranca"
+          element={<Suspense fallback={<PageLoader />}><LazySeguranca /></Suspense>}
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }

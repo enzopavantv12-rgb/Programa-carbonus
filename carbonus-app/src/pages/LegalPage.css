@@ -1,0 +1,136 @@
+.legal {
+  background: var(--paper, #f1f2ea);
+  min-height: 100vh;
+  color: #121a35;
+}
+
+.legal__accent {
+  height: 4px;
+  background: linear-gradient(100deg, #1bf717, #06caed, #0655ed);
+}
+
+.legal__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 22px clamp(20px, 4vw, 40px);
+}
+
+.legal__brand {
+  font: 800 18px 'Archivo', 'Bricolage Grotesque', sans-serif;
+  letter-spacing: 0.04em;
+  color: #121a35;
+  text-decoration: none;
+}
+.legal__brand b {
+  color: #1bf717;
+  /* green on white: force dark shade for AA contrast */
+  color: #0d8c0d;
+}
+
+.legal__back {
+  color: #0655ed;
+  text-decoration: none;
+  font: 500 14px 'Inter', 'Nunito', sans-serif;
+  transition: opacity 0.15s;
+}
+.legal__back:hover {
+  opacity: 0.7;
+}
+.legal__back:focus-visible {
+  outline: 2px solid #0655ed;
+  border-radius: 3px;
+}
+
+.legal__doc {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 56px) clamp(20px, 4vw, 40px) 90px;
+}
+
+.legal__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font: 600 12px 'Inter', 'Nunito', sans-serif;
+  color: #5b6172;
+}
+
+.legal__title {
+  font: 800 clamp(30px, 5vw, 52px) 'Archivo', 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 10px 0 6px;
+  color: #121a35;
+}
+
+.legal__updated {
+  color: #5b6172;
+  font: 500 14px 'Inter', 'Nunito', sans-serif;
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+.legal__lead {
+  font: 400 17px/1.6 'Inter', 'Nunito', sans-serif;
+  margin: 0 0 18px;
+  color: #2a2f3d;
+}
+
+.legal__section {
+  margin: 34px 0;
+}
+
+.legal__section h2 {
+  font: 700 clamp(19px, 2.4vw, 26px) 'Archivo', 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+  padding-top: 8px;
+  border-top: 1px solid #dcdecf;
+  color: #121a35;
+}
+
+.legal__section p {
+  font: 400 15.5px/1.7 'Inter', 'Nunito', sans-serif;
+  color: #2a2f3d;
+  margin: 0 0 12px;
+}
+
+.legal__section ul {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+
+.legal__section li {
+  font: 400 15.5px/1.7 'Inter', 'Nunito', sans-serif;
+  color: #2a2f3d;
+  margin-bottom: 6px;
+}
+
+.legal__section a {
+  color: #0655ed;
+}
+.legal__section a:hover {
+  text-decoration: underline;
+}
+
+.legal__note {
+  margin-top: 40px;
+  padding: 16px 18px;
+  background: #e7e9dc;
+  border-radius: 12px;
+  font: 400 13.5px/1.6 'Inter', 'Nunito', sans-serif;
+  color: #5b6172;
+}
+
+/* Footer spacing on legal pages */
+.legal footer {
+  margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
